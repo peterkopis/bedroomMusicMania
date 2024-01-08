@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -46,6 +48,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     private ?array $interrested_in_styles = null;
+
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Song::class)]
+    private Collection $songs;
+
+    public function __construct()
+    {
+        $this->songs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -185,6 +195,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setInterrestedInStyles(?array $interrested_in_styles): static
     {
         $this->interrested_in_styles = $interrested_in_styles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Song>
+     */
+    public function getSongs(): Collection
+    {
+        return $this->songs;
+    }
+
+    public function addSong(Song $song): static
+    {
+        if (!$this->songs->contains($song)) {
+            $this->songs->add($song);
+            $song->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSong(Song $song): static
+    {
+        if ($this->songs->removeElement($song)) {
+            // set the owning side to null (unless already changed)
+            if ($song->getUserId() === $this) {
+                $song->setUserId(null);
+            }
+        }
 
         return $this;
     }
