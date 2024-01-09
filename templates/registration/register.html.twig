@@ -8,11 +8,17 @@
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.artist_name) }}
+        {{ form_row(registrationForm.real_name) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(registrationForm.description) }}
+        {{ form_row(registrationForm.image) }}
+        {{ form_row(registrationForm.interrested_in_styles) }}
+        
+        
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
