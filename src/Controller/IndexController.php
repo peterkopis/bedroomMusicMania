@@ -13,7 +13,7 @@ class IndexController extends AbstractController
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('app_dashboard');
+            return $this->redirectToRoute('app_user_dashboard',['user' => $this->getUser()]);
         }
 
 
