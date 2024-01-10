@@ -3,26 +3,45 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <div class="container bg-light md-6 m-3 background">
+        <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
+        {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.artist_name) }}
-        {{ form_row(registrationForm.real_name) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword.first, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.plainPassword.second, {
-            label: 'Confirm Password'
-        })}}
-        {{ form_row(registrationForm.description) }}
-        {{ form_row(registrationForm.image) }}
-        {{ form_row(registrationForm.interrested_in_styles) }}
-        
-        
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        {{ form_start(registrationForm) }}
+        <div class="col-md-4">
+            {{ form_row(registrationForm.artist_name) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(registrationForm.real_name) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(registrationForm.email) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(registrationForm.plainPassword.first, {
+                label: 'Password'
+            }) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(registrationForm.plainPassword.second, {
+                label: 'Confirm Password'
+            })}}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(registrationForm.description) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(registrationForm.image) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(registrationForm.interrested_in_styles) }}
+        </div>
+            
+            
+        <div class="d-grid gap-2 m-3">
+            <button type="submit" class="btn btn-secondary">Register</button>
+        </div>
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
