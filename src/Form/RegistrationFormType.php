@@ -58,12 +58,12 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Please enter a password',
                     ]),
-                    new Length([
-                        'min' => 6,
+                    /*new Length([
+                        'min' => 4,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
-                        'max' => 256,
-                    ]),
+                        'max' => 25,
+                    ]),*/
                 ],
             ])
             ->add('plainPassword',RepeatedType::class,[
@@ -72,6 +72,17 @@ class RegistrationFormType extends AbstractType
                 'first_options'  => ['label' => 'Password'],
                 'second_options' => ['label' => 'Confirm Password'],
                 'invalid_message' => 'The password fields must match.',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a password',
+                    ]),
+                    new Length([
+                        'min' => 4,
+                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 25,
+                    ]),
+                ],
                 ])
             ->add('artist_name',TextType::class,[
                 'constraints' => [
