@@ -14,6 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class RegistrationController extends AbstractController
 {
@@ -35,7 +36,24 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            //UploadedImage
+            $uploadedImage = $form->get('image')->getData();
+            if ($uploadedImage) {
+                $destination = $this->getParameter('users_images_directory');
+                $originalFilename = pathinfo($uploadedImage->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$uploadedImage->guessExtension();
+                try{
+                    $uploadedImage->move(
+                        $destination,
+                        $newFilename
+                    );
+                }catch (FileException $e){
+                    // ... handle exception if something happens during file upload
+                    $e->getMessage();
+                }
+                $user->setImage($newFilename);
+            }
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
