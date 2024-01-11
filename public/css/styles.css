@@ -2,3 +2,19 @@
 
 .background { background-image: url(../images/pexels-stas-knop-1153896.jpg);
     background-size: cover;}
+
+.background_base { background-image: url(../images/pexels-pixabay-164716.jpg);
+    }
+
+.background_login { background-image: url(../images/pexels-dominika-roseclay-1021876.jpg);
+}
+
+
+.form_padding {padding-left: 20px;}
+
+.flex_container {
+    padding-left: 450px;
+    display: flex;
+    justify-content:flex-end !important; /* Cambia esto a flex-end para mover el div a la derecha */
+}
+    

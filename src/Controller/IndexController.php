@@ -18,7 +18,7 @@ class IndexController extends AbstractController
 
 
         return $this->render('index/index.html.twig', [
-            'controller_name' => 'IndexController',
+            'controller_name' => 'Bedroom-Music-Mania',
         ]);
     }
 }

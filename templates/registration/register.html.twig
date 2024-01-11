@@ -3,44 +3,49 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div class="container bg-light md-6 m-3 background">
+    <div class=" bg-light  background">
+        <h3>
+            <div class="mb-3">
+            Return to <a href="{{ path('app_index') }}">index</a>    
+        </div>
+        </h3>
         <h1>Register</h1>
 
         {{ form_errors(registrationForm) }}
 
         {{ form_start(registrationForm) }}
-        <div class="col-md-4">
+        <div class="col-md-4 form_padding">
             {{ form_row(registrationForm.artist_name) }}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 form_padding">
             {{ form_row(registrationForm.real_name) }}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 form_padding">
             {{ form_row(registrationForm.email) }}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 form_padding">
             {{ form_row(registrationForm.plainPassword.first, {
                 label: 'Password'
             }) }}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 form_padding">
             {{ form_row(registrationForm.plainPassword.second, {
                 label: 'Confirm Password'
             })}}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 form_padding">
             {{ form_row(registrationForm.description) }}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 form_padding">
             {{ form_row(registrationForm.image) }}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 form_padding">
             {{ form_row(registrationForm.interrested_in_styles) }}
         </div>
             
             
         <div class="d-grid gap-2 m-3">
-            <button type="submit" class="btn btn-secondary">Register</button>
+            <button type="submit" class="btn btn-secondary form_padding">Register</button>
         </div>
         {{ form_end(registrationForm) }}
     </div>

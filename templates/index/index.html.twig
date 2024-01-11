@@ -3,18 +3,23 @@
 {% block title %}Hello IndexController!{% endblock %}
 
 {% block body %}
+<body class="background_base">
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper {margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif;color: white; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>You have account: <code><a href="{{path('app_login') }}">login</a></code></li>
-        <li>Create account: <code><a href="{{path('app_register') }}">registration</a></code></li>
-    </ul>
+<div class="flex_container">
+    <div class="example-wrapper">
+        <h1> {{ controller_name }}! ✅</h1>
+        <p>
+        If you have an account you can upload your own music:
+        </p>
+        <ul>
+            <li>You have an account: <code><a href="{{path('app_login') }}">login</a></code></li>
+            
+            <li>Create an account: <code><a href="{{path('app_register') }}">registration</a></code></li>
+        </ul>
+    </div>
 </div>
+</body>
 {% endblock %}
