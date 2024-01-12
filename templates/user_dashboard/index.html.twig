@@ -1,22 +1,96 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserDAshboardController!{% endblock %}
+{% block title %}UserDashboard{% endblock %}
 
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
+
 {#siempre se ejecuta este if#}
 {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        <div class="mb-3 d-flex justify-content-between m-3">
+            <p>You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a></p>
+            <p>Your account was created at {{app.user.createdAt|date('d-m-Y')}}</p>
         </div>
     {% endif %}
-<div class="example-wrapper">
-    <h1>Hello {{ dump(user) }}! ✅</h1>
-
-    
+<div class="example-wrapper mb-3 d-flex justify-content-between m-3">
+    <div>
+        <h1>Hello {{user.artistName}}</h1>
+        <img src="{{ asset('uploads/users_images/'~user.image) }}" alt="User image">
+    </div>
+    <div>
+        <h3>Your Artis Name: {{user.artistName}}</h2>
+        <h3>Your Real Name: {{user.realName}}</h2>
+        <h3>About you: {{user.description}}</h2>
+        <h3>You are interrested in Styles:</h2>
+        {%for style in user.interrestedInStyles %}
+        <p>{{style}}</p>
+        {%endfor%}
+    </div>
+</div>
+<hr>
+<div>
+    <div>
+        <h2>Your Songs</h2>
+        <button id ="toggler">
+        <i class="fas fa-upload"></i> Upload a song
+    </button>
+    <div id="uploadForm" style="display: none;">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="songTitle">Song Title:</label>
+            <input type="text" id="songTitle" name="songTitle" required>
+            <label for="songDescription">Song Description:</label>
+            <input type="text" id="songDescription" name="songDescription" required>
+            <label for="songFile">Song File:</label>
+            <input type="file" id="songFile" name="songFile" accept=".mp3" required>
+            <label for="songImage">Song Cover Image:</label>
+            <input type="file" id="songImage" name="songImage" accept="image/*" required>
+            <label for="songGenre">Song Genre:</label>
+            <select id="songGenre" name="songGenre" required>
+                <option value="">Select a genre</option>
+                <option value="Rock">Rock</option>
+                <option value="Pop">Pop</option>
+                <option value="Rap">Rap</option>
+                <option value="Hip-Hop">Hip-Hop</option>
+                <option value="RnB">RnB</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Blues">Blues</option>
+                <option value="Country">Country</option>
+                <option value="Folk">Folk</option>
+                <option value="Classique">Classique</option>
+                <option value="Reggae">Reggae</option>
+                <option value="Metal">Metal</option>
+                <option value="Punk">Punk</option>
+                <option value="Electro">Electro</option>
+                <option value="Techno">Techno</option>
+                <option value="House">House</option>
+                <option value="Disco">Disco</option>
+                <option value="Funk">Funk</option>
+                <option value="Soul">Soul</option>
+                <option value="Gospel">Gospel</option>
+                <option value="Latino">Latino</option>
+                <option value="World">World</option>
+                <option value="Autre">Autre</option>
+            </select>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+    </div>
+        {%for song in user.songs %}
+        <div class="mb-3 d-flex justify-content-between m-3">
+            <div>
+                <h3>{{song.title}}</h3>
+                <p>{{song.description}}</p>
+                <p>{{song.createdAt|date('d-m-Y')}}</p>
+            </div>
+            <div>
+                <img src="{{ asset('uploads/songs_images/'~song.image) }}" alt="Song image">
+            </div>
+        </div>
+        {%endfor%}
     
 </div>
+{# <h2>{{ dump(app.user) }}</h2>#}
 {% endblock %}
