@@ -38,47 +38,52 @@
 {% endfor %}
 <div>
     <div>
-        <h2>Your Songs</h2>
-        <button id ="toggler">
-            <i class="fas fa-upload"></i>You want add a new song?
-        </button>
-            <div id="uploadForm" style="display: none;" >
-                    {{ form_errors(uploadSong) }}
-                    {{ form_start(uploadSong) }}
-                        <div class="col-md-4 form_padding">
-                            {{ form_row(uploadSong.name) }}
+        <div class="example-wrapper mb-3 d-flex justify-content-between m-3">
+            <h2>Your Songs</h2>
+            <button id ="toggler">
+                <i class="fas fa-upload"></i>You want add a new song?
+            </button>
+        </div>    
+                <div id="uploadForm" style="display: none;" >
+                        {{ form_errors(uploadSong) }}
+                        {{ form_start(uploadSong) }}
+                            <div class="col-md-4 form_padding">
+                                {{ form_row(uploadSong.name) }}
+                            </div>
+                            <div class="col-md-4 form_padding">
+                                {{ form_row(uploadSong.description) }}
+                            </div>
+                            <div class="col-md-4 form_padding">
+                                {{ form_row(uploadSong.location) }}
+                            </div>
+                            <div class="col-md-4 form_padding">
+                                {{ form_row(uploadSong.image) }}
+                            </div>
+                            <div class="col-md-4 form_padding">
+                                {{ form_row(uploadSong.genre) }}
+                            </div>
+                        <div class="d-grid gap-2 m-3">
+                            <button type="submit" class="btn btn-secondary form_padding">Upload a Song</button>
                         </div>
-                        <div class="col-md-4 form_padding">
-                            {{ form_row(uploadSong.description) }}
+                        {{ form_end(uploadSong) }}
                         </div>
-                        <div class="col-md-4 form_padding">
-                            {{ form_row(uploadSong.location) }}
-                        </div>
-                        <div class="col-md-4 form_padding">
-                            {{ form_row(uploadSong.image) }}
-                        </div>
-                        <div class="col-md-4 form_padding">
-                            {{ form_row(uploadSong.genre) }}
-                        </div>
-                    <div class="d-grid gap-2 m-3">
-                        <button type="submit" class="btn btn-secondary form_padding">Upload a Song</button>
-                    </div>
-                    {{ form_end(uploadSong) }}
-                    </div>
-            </div>
-            <hr>
-            {%for song in user.songs %}
-                <div class="mb-3 d-flex justify-content-between m-3">
-                    <div>
-                        <h3>{{song.name}}</h3>
-                        <p>{{song.description}}</p>
-                        <p>{{song.createdAt|date('d-m-Y')}}</p>
-                    </div>
-                    <div>
-                        <img src="{{ asset('uploads/songs_images/'~song.image) }}" alt="Song image">
-                    </div>
                 </div>
-            {%endfor%}
+                <hr>
+                {%for song in user.songs %}
+                    <div class="mb-3 d-flex justify-content-between m-3">
+                        <div>
+                            <h3>{{song.name}}</h3>
+                            
+                            <p>{{song.createdAt|date('d-m-Y')}}</p>
+                        </div>
+                        <div>
+                            <p>{{song.description}}</p>
+                        </div>
+                        <div>
+                            <img src="{{ asset('uploads/songs_images/'~song.image) }}" alt="Song image" style="width: 80px; height: 80px;">
+                        </div>
+                    </div>
+                {%endfor%}
     </div>
 </div>
 {# <h2>{{ dump(app.user) }}</h2>#}

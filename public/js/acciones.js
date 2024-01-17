@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     {
         if(TForm.style.display == "none"){
             TForm.style.display = "block";
+            btn.innerText = 'Hide it';
         } else {
             TForm.style.display = 'none';
+            btn.innerText = 'You want add a new song?';
         }
     }
 
