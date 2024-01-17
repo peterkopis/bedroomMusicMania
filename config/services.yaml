@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     users_images_directory: '%kernel.project_dir%/public/uploads/users_images'
+    songs_images_directory: '%kernel.project_dir%/public/uploads/songs_images'
+    songs_directory: '%kernel.project_dir%/public/uploads/songs'
 services:
     # default configuration for services in *this* file
     _defaults:
