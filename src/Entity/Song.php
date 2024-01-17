@@ -38,6 +38,12 @@ class Song
     #[ORM\ManyToOne(inversedBy: 'songs')]
     private ?User $user_id = null;
 
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+        $this->reproduced = 0;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
