@@ -69,21 +69,33 @@
                         </div>
                 </div>
                 <hr>
-                {%for song in user.songs %}
+                {% for song in user.songs %}
                     <div class="mb-3 d-flex justify-content-between m-3">
                         <div>
                             <h3>{{song.name}}</h3>
                             
                             <p>{{song.createdAt|date('d-m-Y')}}</p>
+                            <p>reproduced:&nbsp;{{song.reproduced}}x</p>
+                            
+                        </div>
+                        <div>
+                            <img src="{{ asset('uploads/songs_images/'~song.image) }}" alt="Song image" style="width: 80px; height: 80px;">
                         </div>
                         <div>
                             <p>{{song.description}}</p>
                         </div>
                         <div>
-                            <img src="{{ asset('uploads/songs_images/'~song.image) }}" alt="Song image" style="width: 80px; height: 80px;">
+                            {% for genr in song.genre %}
+                            {{genr}}&nbsp;
+                            {% endfor %}
+                        </div>
+                        <div>
+                            <button class="playPauseButton">
+                                <img class="playPauseImage" src="{{ asset('images/35_Music_Player_icon-icons.com_61459.png') }}" alt="Play" style="width: 80px; height: 80px;">
+                            </button>
                         </div>
                     </div>
-                {%endfor%}
+                {% endfor %}
     </div>
 </div>
 {# <h2>{{ dump(app.user) }}</h2>#}
