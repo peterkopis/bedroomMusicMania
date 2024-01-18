@@ -92,6 +92,10 @@
                         <div>
                             <button class="playPauseButton">
                                 <img class="playPauseImage" src="{{ asset('images/35_Music_Player_icon-icons.com_61459.png') }}" alt="Play" style="width: 80px; height: 80px;">
+                                <audio controls>
+                                    <source src="{{ asset('uploads/songs/'~song.location) }}" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                </audio>
                             </button>
                         </div>
                     </div>
